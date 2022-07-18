@@ -27,9 +27,10 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-//app.MapGet("/users", (UserController controller) => controller.GetAllUsers());
-//app.MapGet("/users", (UserController controller) => controller.GetAllUsers());
 
+// USERS
+
+//app.MapGet("/users", (UserController controller) => controller.GetAllUsers());
 
 app.MapGet("/users", () =>
 {
@@ -39,13 +40,16 @@ app.MapGet("/users", () =>
     return getAll.GetAllUsers();
 });
 
-app.MapGet("/tickets", () =>
-{
-    var scope = app.Services.CreateScope();
-    TicketServices getAll = scope.ServiceProvider.GetRequiredService<TicketServices>();
 
-    return getAll.GetAllTickets();
-});
+// Get User by USERNAME
+
+// Get user by UserID
+
+
+// LOGIN user
+
+// CREATE user
+
 
 
 // app.MapPost("/register", (User user) => 
@@ -63,5 +67,32 @@ app.MapGet("/tickets", () =>
 //         return Results.Conflict("this username already exists.");
 //     }
 // });
+
+
+// Get USER by UserID
+
+
+
+// TICKETS
+
+// Get ALL tickets
+
+app.MapGet("/tickets", () =>
+{
+    var scope = app.Services.CreateScope();
+    TicketServices getAll = scope.ServiceProvider.GetRequiredService<TicketServices>();
+
+    return getAll.GetAllTickets();
+});
+
+
+// Get ticket by STATUS
+
+// UPDATE a ticket
+
+// Get TICKETS by USER
+
+// Get A ticket by ticketID
+
 
 app.Run();

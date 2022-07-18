@@ -13,7 +13,8 @@ public class UserController
         _service = service;
     }
 
-    //public List<User> GetAllUsers()
+    // Get ALL users
+
     public IResult GetAllUsers()    
     {
         try
@@ -25,8 +26,13 @@ public class UserController
         {
             return Results.NotFound("we didn't find anything.");
         }         
-        //return _service.GetAllUsers();
-        // List<User> allUsers = _service.GetAllUsers();
-        // return allUsers;
+
     }    
+
+// Get USER by UserID
+
+// Get User by USERNAME
+
+
+
 }

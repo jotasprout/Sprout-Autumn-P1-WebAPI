@@ -13,7 +13,9 @@ public class TicketController
         _service = service;
     }
 
-    //public List<Ticket> GetAllTickets()
+
+// Get ALL tickets
+
     public IResult GetAllTickets()    
     {
         List<Ticket> allTickets = _service.GetAllTickets();
@@ -29,4 +31,15 @@ public class TicketController
         // List<Ticket> allTickets = _service.GetAllTickets();
         // return allTickets;
     }    
+
+
+
+
+// Get ticket by STATUS
+
+// UPDATE a ticket
+
+// Get TICKETS by USER
+
+// Get A ticket by ticketID
 }
