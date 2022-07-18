@@ -14,27 +14,38 @@ namespace Services
             _ticketDAO = ticketDAO;
         }
         
+
         public List<Ticket> GetTicketsByUserName(string userIWantTicketsFor)
         {
-            return _ticketDAO.GetTicketsByUserName(userIWantTicketsFor);
+            try
+            {
+                return _ticketDAO.GetTicketsByUserName(userIWantTicketsFor);
+            }
+            catch(ResourceNotFound)
+            {
+                throw new ResourceNotFound("Indy sez that employee's got no ticket.");
+            }
         }
+
 
         public List<Ticket> GrabTicketByTicketID(string ticketID)
         {
             return _ticketDAO.GrabTicketByTicketID(ticketID);
         }
 
+
         public List<Ticket> GetAllTickets()    
         {
             try
             {               
-            return _ticketDAO.GetAllTickets();;      
+                return _ticketDAO.GetAllTickets();;      
             }
             catch(ResourceNotFound)
             {
                 throw new ResourceNotFound();
             } 
         }  
+
 
         public List<Ticket> CreateTicket(User CurrentUser)
         {

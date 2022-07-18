@@ -55,7 +55,7 @@ namespace DataAccess
 
         public List<User> GetAllUsers()
         {
-            List<User> allUsers = new List<User>();
+            //List<User> allUsers = new List<User>();
             try
             {            
             return GetUsers(thoseAll);
@@ -157,9 +157,9 @@ namespace DataAccess
                 reader.Close();
                 makeConnection.Close();
             }
-            catch (Exception e)
+            catch (ResourceNotFound)
             {
-                Console.WriteLine(e.Message);
+                throw new ResourceNotFound();
             }
             return thisUser;
         }

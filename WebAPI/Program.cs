@@ -4,7 +4,7 @@ using DataAccess;
 using Models;
 using Sensitive;
 // using Microsoft.AspNetCore.Mvc;
-// using WebAPI.Controllers;
+using WebAPI.Controllers;
 // using Microsoft.AspNetCore.Http.Json;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -90,9 +90,14 @@ app.MapGet("/tickets", () =>
 
 // UPDATE a ticket
 
-// Get TICKETS by USER
+// Get TICKETS by USERNAME
+app.MapGet("/tickets/author/{userName}", (string userName) => 
+{
+    var scope = app.Services.CreateScope();
+    TicketServices ticketsByUserName = scope.ServiceProvider.GetRequiredService<TicketServices>();
+    return ticketsByUserName.GetTicketsByUserName(userName);
+});
+
 
 // Get A ticket by ticketID
-
-
 app.Run();

@@ -20,59 +20,68 @@ public class TicketRepository : IticketDAO
         _connectionFactory = connectionFactory;
     }
 
+
     public string thoseAll = "select * from AutumnERS.tickets;";
+
 
     public List<Ticket> GetTickets(string those)
     {
 
-        List<Ticket> tickets = new List<Ticket>();
-        SqlConnection makeConnection = _connectionFactory.GetConnection();
-        SqlCommand getEveryTicket = new SqlCommand(those, makeConnection);
+
 
         try
         {
+            List<Ticket> tickets = new List<Ticket>();
+            SqlConnection makeConnection = _connectionFactory.GetConnection();
+            SqlCommand getEveryTicket = new SqlCommand(those, makeConnection);            
             makeConnection.Open();
             SqlDataReader reader = getEveryTicket.ExecuteReader();
 
             while (reader.Read())
             {
-                Console.WriteLine("\t{0}\t{1}\t{2}\t{3}\t{4}\t{5}", reader[0], reader[1], reader[2], reader[3], reader[4], reader[5]);
+                //Console.WriteLine("\t{0}\t{1}\t{2}\t{3}\t{4}\t{5}", reader[0], reader[1], reader[2], reader[3], reader[4], reader[5]);
                 tickets.Add(new Ticket((int)reader[0], (int)reader[1], (int)reader[2], (string)reader[3], (string)reader[4], (decimal)reader[5]));
+                //return tickets;
             }
             reader.Close();
             makeConnection.Close();
+            return tickets;
         }
         catch (ResourceNotFound)
         {
             throw new ResourceNotFound();
         }
-        return tickets;
+        //
     }
 
 
     public List<Ticket> GetAllTickets()
     {
-        List<Ticket> allTickets = new List<Ticket>();
+        //List<Ticket> allTickets = new List<Ticket>();
         try
         {        
-            GetTickets(thoseAll);
-            return allTickets;
+            return GetTickets(thoseAll);;
         }
         catch (ResourceNotFound)
         {
             throw new ResourceNotFound();
         }        
-        return allTickets;
+        //return allTickets;
     }
 
     public List<Ticket> GetTicketsByUserName(string userIWantTicketsFor)
     {
-        User userInQuestion = new UserRepository().GetUserByUserName(userIWantTicketsFor);
-        int userID = userInQuestion.userID;
-        string byUserQueryWithID = "select * from AutumnERS.tickets where author_fk = " + userID + ";";
-        List<Ticket> TicketsFromPeepIWant = new List<Ticket>(); 
-        GetTickets(byUserQueryWithID);
-        return TicketsFromPeepIWant;
+        try
+        {
+            User userInQuestion = new UserRepository().GetUserByUserName(userIWantTicketsFor);
+            int userID = userInQuestion.userID;
+            string byUserQueryWithID = "select * from AutumnERS.tickets where author_fk = " + userID + ";";
+            return GetTickets(byUserQueryWithID);
+        }
+        catch(ResourceNotFound)
+        {
+            throw new ResourceNotFound();
+        }
     }
 
     public List<Ticket> GetTicketsByUserID(string userIWantTicketsFor)

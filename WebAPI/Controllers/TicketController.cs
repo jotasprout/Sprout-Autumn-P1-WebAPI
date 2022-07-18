@@ -25,7 +25,7 @@ public class TicketController
         }
         catch (ResourceNotFound)
         {
-            return Results.NotFound("we didn't find anything.");
+            return Results.NotFound("Indy sez you got no tickets.");
         }         
         //return _service.GetAllTickets();
         // List<Ticket> allTickets = _service.GetAllTickets();
@@ -42,4 +42,17 @@ public class TicketController
 // Get TICKETS by USER
 
 // Get A ticket by ticketID
+
+    public IResult GetTicketsByUserName(string author_fk)
+    {
+        List<Ticket> ticketsByUserName = _service.GetTicketsByUserName(author_fk);
+        try
+        {
+            return Results.Accepted("/tickets/author{username}", ticketsByUserName);
+        }
+        catch(ResourceNotFound)
+        {
+            throw new ResourceNotFound("Indy sez that employee's got no ticket.");
+        }
+    }
 }
