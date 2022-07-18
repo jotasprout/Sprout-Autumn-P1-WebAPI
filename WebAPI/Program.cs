@@ -38,7 +38,13 @@ app.MapGet("/users", () =>
     return getAll.GetAllUsers();
 });
 
+app.MapGet("/tickets", () =>
+{
+    var scope = app.Services.CreateScope();
+    TicketServices getAll = scope.ServiceProvider.GetRequiredService<TicketServices>();
 
+    return getAll.GetAllTickets();
+});
 
 
 // app.MapPost("/register", (User user) => 

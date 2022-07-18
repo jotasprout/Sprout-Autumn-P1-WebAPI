@@ -8,55 +8,62 @@ namespace Services
     public class TicketServices
     {
 
-        private readonly IticketDAO _repo;
-        public TicketServices(IticketDAO repo)
+        private readonly IticketDAO _ticketDAO;
+        public TicketServices(IticketDAO ticketDAO)
         {
-            _repo = repo;
+            _ticketDAO = ticketDAO;
         }
         
         public List<Ticket> GetTicketsByUserName(string userIWantTicketsFor)
         {
-            return _repo.GetTicketsByUserName(userIWantTicketsFor);
+            return _ticketDAO.GetTicketsByUserName(userIWantTicketsFor);
         }
 
         public List<Ticket> GrabTicketByTicketID(string ticketID)
         {
-            return _repo.GrabTicketByTicketID(ticketID);
+            return _ticketDAO.GrabTicketByTicketID(ticketID);
         }
 
-        public List<Ticket> GetAllTickets()
+        public List<Ticket> GetAllTickets()    
         {
-            return _repo.GetAllTickets();
-        }
+            try
+            {               
+            return _ticketDAO.GetAllTickets();;      
+            }
+            catch(ResourceNotFound)
+            {
+                throw new ResourceNotFound();
+            } 
+        }  
 
         public List<Ticket> CreateTicket(User CurrentUser)
         {
-            return _repo.CreateTicket(CurrentUser);
+            return _ticketDAO.CreateTicket(CurrentUser);
         }
 
 
         public List<Ticket> GetTickets(string those)
         {
-            return _repo.GetTickets(those);
+            return _ticketDAO.GetTickets(those);
 
         }
         
         
         public List<Ticket> GetTicketsByUserID(string userIWantTicketsFor)
         {
-            return _repo.GetTicketsByUserID(userIWantTicketsFor);
+            return _ticketDAO.GetTicketsByUserID(userIWantTicketsFor);
         }
 
 
         public List<Ticket> GetTicketsByStatus()
         {
-            return _repo.GetTicketsByStatus();
+            return _ticketDAO.GetTicketsByStatus();
 
         }
         
         public List<Ticket> ResolveThisTicket(string ticketID, User CurrentUserIn)
         {
-            return _repo.ResolveThisTicket(ticketID, CurrentUserIn);
+            return _ticketDAO.ResolveThisTicket(ticketID, CurrentUserIn);
 
         }
 

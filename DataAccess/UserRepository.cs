@@ -46,9 +46,9 @@ namespace DataAccess
                 reader.Close();
                 makeConnection.Close();
             }
-            catch (Exception e)
+            catch (ResourceNotFound)
             {
-                throw new Exception();
+                throw new ResourceNotFound();
             }
             return users;
         }
@@ -57,8 +57,16 @@ namespace DataAccess
         public List<User> GetAllUsers()
         {
             List<User> allUsers = new List<User>();
+            try
+            {            
             GetUsers(thoseAll);
             return allUsers;
+            }
+            catch (ResourceNotFound)
+            {
+                throw new ResourceNotFound();
+            }
+            return allUsers;            
         }
 
 
@@ -121,12 +129,12 @@ namespace DataAccess
                 else
                 {
                     Console.WriteLine("Sorry, something didn't work.");
-                    throw new Exception();
+                    throw new UsernameNotAvailable();
                 }
             }
-            catch (Exception)
+            catch (UsernameNotAvailable)
             {
-                throw new Exception();
+                throw new UsernameNotAvailable();
             }            
         }
 

@@ -8,48 +8,52 @@ namespace Services
     public class UserServices
     {
 
-        private readonly IuserDAO _repo;
-        public UserServices(IuserDAO repo)
+        private readonly IuserDAO _userDAO;
+        public UserServices(IuserDAO userDAO)
         {
-            _repo = repo;
+            _userDAO = userDAO;
         }
         public UserServices()
         {
-            _repo = new UserRepository();
+            _userDAO = new UserRepository();
         }
 
         public List<User> GetUsers(string those)
         {
-            return _repo.GetUsers(those);
+            return _userDAO.GetUsers(those);
         }
 
         // public List<User> GetAllUsers()
         // {           
-        //     return _repo.GetAllUsers();
+        //     return _userDAO.GetAllUsers();
         // }
 
-    public List<User> GetAllUsers()    
-    {
-            List<User> allUsers =_repo.GetAllUsers();
-            return allUsers;       
-        //return _service.GetAllUsers();
-        // List<User> allUsers = _service.GetAllUsers();
-        // return allUsers;
-    }           
+        public List<User> GetAllUsers()    
+        {
+            //List<User> allUsers = _userDAO.GetAllUsers();
+            try
+            {               
+            return _userDAO.GetAllUsers();;      
+            }
+            catch(ResourceNotFound)
+            {
+                throw new ResourceNotFound();
+            } 
+        }           
 
         public User GetUserByUserName(string userWanted)
         {
-            return _repo.GetUserByUserName(userWanted);
+            return _userDAO.GetUserByUserName(userWanted);
         }             
 
         public User CreateUser(User newUser)
         {
-            return _repo.CreateUser(newUser);
+            return _userDAO.CreateUser(newUser);
         }
 
         public User GetUserByUserID(string userID)
         {
-            return _repo.GetUserByUserID(userID);
+            return _userDAO.GetUserByUserID(userID);
         }
  
     }

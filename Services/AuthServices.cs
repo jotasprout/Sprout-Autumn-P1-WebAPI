@@ -9,19 +9,19 @@ namespace Services;
 
 public class AuthServices
 {
-    private readonly UserRepository _user;
+    private readonly IuserDAO _userDAO;
 
     public User CurrentUser = new User();    
 
-    public AuthServices()
+    public AuthServices(IuserDAO userDAO)
     {
-        _user = new UserRepository();
+        _userDAO = userDAO;
     }
 
-    // public AuthServices(ConnectionFactory connectionFactory)
-    // {
-    //     something goes here;
-    // }
+    public AuthServices()
+    {
+        _userDAO = new UserRepository();
+    }
 
     public User LoginUser(string userName, string password)
     {
@@ -30,7 +30,7 @@ public class AuthServices
         try
         {
             // retrieve user from database using DataAccess method
-            User lookInside = _user.GetUserByUserName(userName);
+            User lookInside = _userDAO.GetUserByUserName(userName);
             // if password for parameter user matches password from database user
             if (wantsInside.userName != lookInside.userName)
             {
@@ -74,7 +74,7 @@ public class AuthServices
 
         try
         {
-            User userWannabe = _user.GetUserByUserName(userName);
+            User userWannabe = _userDAO.GetUserByUserName(userName);
             if (userWannabe.userName == thisUser.userName)
             {
                 throw new UsernameNotAvailable();
@@ -85,7 +85,7 @@ public class AuthServices
             }
             else 
             {
-                User thatUser = _user.CreateUser(thisUser);
+                User thatUser = _userDAO.CreateUser(thisUser);
                 return thatUser;
             }
         }
@@ -95,7 +95,7 @@ public class AuthServices
         }
         catch(ResourceNotFound)
         {
-            return _user.CreateUser(thisUser);
+            return _userDAO.CreateUser(thisUser);
         }
     }
 }

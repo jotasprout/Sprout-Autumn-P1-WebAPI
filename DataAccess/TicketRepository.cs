@@ -42,9 +42,9 @@ public class TicketRepository : IticketDAO
             reader.Close();
             makeConnection.Close();
         }
-        catch (Exception e)
+        catch (ResourceNotFound)
         {
-            Console.WriteLine(e.Message);
+            throw new ResourceNotFound();
         }
         return tickets;
     }
@@ -53,7 +53,15 @@ public class TicketRepository : IticketDAO
     public List<Ticket> GetAllTickets()
     {
         List<Ticket> allTickets = new List<Ticket>();
-        GetTickets(thoseAll);
+        try
+        {        
+            GetTickets(thoseAll);
+            return allTickets;
+        }
+        catch (ResourceNotFound)
+        {
+            throw new ResourceNotFound();
+        }        
         return allTickets;
     }
 
