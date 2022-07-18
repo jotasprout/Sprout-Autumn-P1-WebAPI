@@ -1,6 +1,6 @@
 Sensitive
-WebAPI/appsettings.Development.json
-WebAPI/appsettings.json
+#WebAPI/appsettings.Development.json
+#WebAPI/appsettings.json
 # globs
 Makefile.in
 *.userprefs

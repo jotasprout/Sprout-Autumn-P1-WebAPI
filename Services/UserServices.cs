@@ -23,10 +23,19 @@ namespace Services
             return _repo.GetUsers(those);
         }
 
-        public List<User> GetAllUsers()
-        {
-            return _repo.GetAllUsers();
-        }
+        // public List<User> GetAllUsers()
+        // {           
+        //     return _repo.GetAllUsers();
+        // }
+
+    public List<User> GetAllUsers()    
+    {
+            List<User> allUsers =_repo.GetAllUsers();
+            return allUsers;       
+        //return _service.GetAllUsers();
+        // List<User> allUsers = _service.GetAllUsers();
+        // return allUsers;
+    }           
 
         public User GetUserByUserName(string userWanted)
         {
