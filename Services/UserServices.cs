@@ -18,8 +18,6 @@ namespace Services
             _repo = new UserRepository();
         }
 
-
-
         public List<User> GetUsers(string those)
         {
             return _repo.GetUsers(those);
