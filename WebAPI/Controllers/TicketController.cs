@@ -36,9 +36,9 @@ public class TicketController
 
 
 // Get ticket by STATUS
-    public IResult GetTicketsByStatus(string author_fk)
+    public IResult RequestTicketsByStatus(string ticketStatus)
     {
-        List<Ticket> ticketsByStatus = _service.GetTicketsByStatus(author_fk);
+        List<Ticket> ticketsByStatus = _service.RequestTicketsByStatus(ticketStatus);
         try
         {
             return Results.Accepted("/tickets/author{username}", ticketsByStatus);

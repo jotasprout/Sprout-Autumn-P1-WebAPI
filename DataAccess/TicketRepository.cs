@@ -20,15 +20,10 @@ public class TicketRepository : IticketDAO
         _connectionFactory = connectionFactory;
     }
 
-
     public string thoseAll = "select * from AutumnERS.tickets;";
-
 
     public List<Ticket> GetTickets(string those)
     {
-
-
-
         try
         {
             List<Ticket> tickets = new List<Ticket>();

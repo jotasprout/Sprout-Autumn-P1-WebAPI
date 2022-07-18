@@ -89,7 +89,14 @@ namespace Services
 
         public List<Ticket> RequestTicketsByStatus(string ticketStatus)
         {
-            return _ticketDAO.GetTickets(ticketStatus);        
+            try
+            {
+                return _ticketDAO.RequestTicketsByStatus(ticketStatus); 
+            }
+            catch (ResourceNotFound)
+            {
+                throw new ResourceNotFound();
+            } 
         }
 
 
