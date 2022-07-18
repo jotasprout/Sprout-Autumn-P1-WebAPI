@@ -14,7 +14,6 @@ public class UserController
     }
 
     // Get ALL users
-
     public IResult GetAllUsers()    
     {
         try
@@ -26,13 +25,35 @@ public class UserController
         {
             return Results.NotFound("we didn't find anything.");
         }         
-
     }    
 
-// Get USER by UserID
+    // Get USER by UserID
+    public IResult UserByUserID(string userID)    
+    {
+        try
+        {
+            User userByUserID = _service.GetUserByUserID(userID);
+            return Results.Accepted("/users/userid/{userID}", userByUserID);
+        }
+        catch (ResourceNotFound)
+        {
+            return Results.NotFound("We didn't find anything.");
+        }         
+    }   
 
-// Get User by USERNAME
-
+    // Get User by USERNAME
+    public IResult GetUserByUserName(string userWanted)    
+    {
+        try
+        {
+            User userByUserName = _service.GetUserByUserName(userWanted);
+            return Results.Accepted("/users/{userName}", userByUserName);
+        }
+        catch (ResourceNotFound)
+        {
+            return Results.NotFound("We didn't find anything.");
+        }         
+    }   
 
 
 }

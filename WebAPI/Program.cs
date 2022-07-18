@@ -49,7 +49,7 @@ app.MapGet("/users/{userName}", (string userName) =>
 });
 
 // Get user by UserID
-app.MapGet("/users/{userID}", (string userID) => 
+app.MapGet("/users/userid/{userID}", (string userID) => 
 {
     var scope = app.Services.CreateScope();
     UserServices userByUserID = scope.ServiceProvider.GetRequiredService<UserServices>();
@@ -66,7 +66,6 @@ app.MapGet("/users/{userID}", (string userID) =>
 // {
 //     var scope = app.Services.CreateScope();
 //     AuthServices service = scope.ServiceProvider.GetRequiredService<AuthServices>();
-
 //     try
 //     {
 //         service.RegisterUser(user);

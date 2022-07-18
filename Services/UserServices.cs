@@ -45,7 +45,6 @@ namespace Services
             {
                 throw new ResourceNotFound();
             }
-            
         }             
 
         public User CreateUser(User newUser)
@@ -58,7 +57,6 @@ namespace Services
             {
                 throw new InputInvalidException();
             }
-            
         }
 
         public User GetUserByUserID(string userID)

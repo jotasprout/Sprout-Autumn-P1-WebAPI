@@ -13,9 +13,10 @@ public class TicketController
         _service = service;
     }
 
+    // UPDATE a ticket
 
-// Get ALL tickets
 
+    // Get ALL tickets
     public IResult GetAllTickets()    
     {
         List<Ticket> allTickets = _service.GetAllTickets();
@@ -27,15 +28,25 @@ public class TicketController
         {
             return Results.NotFound("Indy sez you got no tickets.");
         }         
-        //return _service.GetAllTickets();
-        // List<Ticket> allTickets = _service.GetAllTickets();
-        // return allTickets;
     }    
 
 
+    // Get A ticket by ticketID
+    public IResult GetTicketByTicketID(string ticketID)
+    {
+        List<Ticket> ticketByTicketID = _service.RequestTicketsByStatus(ticketID);
+        try
+        {
+            return Results.Accepted("/tickets/ticketid/{ticketID}", ticketByTicketID);
+        }
+        catch(ResourceNotFound)
+        {
+            throw new ResourceNotFound("Indy sez there is no tickets with that ticketID.");
+        }
+    }
 
 
-// Get ticket by STATUS
+    // Get ticket by STATUS
     public IResult RequestTicketsByStatus(string ticketStatus)
     {
         List<Ticket> ticketsByStatus = _service.RequestTicketsByStatus(ticketStatus);
@@ -49,12 +60,9 @@ public class TicketController
         }
     }
 
-// UPDATE a ticket
 
-// Get TICKETS by USER
 
-// Get A ticket by ticketID
-
+    // Get TICKETS by USERNAME
     public IResult GetTicketsByUserName(string author_fk)
     {
         List<Ticket> ticketsByUserName = _service.GetTicketsByUserName(author_fk);
