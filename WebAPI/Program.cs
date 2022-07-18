@@ -49,7 +49,7 @@ app.MapGet("/users/{userName}", (string userName) =>
 });
 
 // Get user by UserID
-app.MapGet("/users/{userName}", (string userID) => 
+app.MapGet("/users/{userID}", (string userID) => 
 {
     var scope = app.Services.CreateScope();
     UserServices userByUserID = scope.ServiceProvider.GetRequiredService<UserServices>();
@@ -103,12 +103,20 @@ app.MapGet("/tickets/author/{userName}", (string userName) =>
 });
 
 
-// Get A ticket by ticketID
-app.MapGet("/tickets/{userID}", (string userID) => 
+// Get A ticket by UserID
+app.MapGet("/tickets/userid/{userID}", (string userID) => 
 {
     var scope = app.Services.CreateScope();
-    TicketServices ticketByUserID = scope.ServiceProvider.GetRequiredService<TicketServices>();
-    return ticketByUserID.GetTicketByUserID(userID);
+    TicketServices ticketsByUserID = scope.ServiceProvider.GetRequiredService<TicketServices>();
+    return ticketsByUserID.GetTicketsByUserID(userID);
+});
+
+// Get A ticket by ticketID
+app.MapGet("/tickets/ticketid/{ticketID}", (string ticketID) => 
+{
+    var scope = app.Services.CreateScope();
+    TicketServices ticketByTicketID = scope.ServiceProvider.GetRequiredService<TicketServices>();
+    return ticketByTicketID.GetTicketByTicketID(ticketID);
 });
 
 // Get ticket by STATUS

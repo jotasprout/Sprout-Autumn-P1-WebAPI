@@ -122,7 +122,7 @@ public class TicketRepository : IticketDAO
         return GetTickets(byTicketStatus);        
     }
 
-    public List<Ticket> GrabTicketByTicketID(string ticketID)
+    public List<Ticket> GetTicketByTicketID(string ticketID)
     {
         string byTicketID = "select * from AutumnERS.tickets where ticketID = " + ticketID + ";";
         return GetTickets(byTicketID);        
@@ -172,7 +172,7 @@ public class TicketRepository : IticketDAO
             if (itWorked != 0)
             {
                 Console.WriteLine("Ticket updated.");
-                return GrabTicketByTicketID(ticketID);
+                return GetTicketByTicketID(ticketID);
             }
             else
             {

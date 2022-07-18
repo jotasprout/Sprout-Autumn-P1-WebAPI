@@ -28,9 +28,16 @@ namespace Services
         }
 
 
-        public List<Ticket> GrabTicketByTicketID(string ticketID)
+        public List<Ticket> GetTicketByTicketID(string ticketID)
         {
-            return _ticketDAO.GrabTicketByTicketID(ticketID);
+            try
+            {
+                return _ticketDAO.GetTicketByTicketID(ticketID);
+            }
+            catch(ResourceNotFound)
+            {
+                throw new ResourceNotFound();
+            }
         }
 
 
