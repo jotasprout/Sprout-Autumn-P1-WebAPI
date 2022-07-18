@@ -23,14 +23,8 @@ namespace Services
             return _userDAO.GetUsers(those);
         }
 
-        // public List<User> GetAllUsers()
-        // {           
-        //     return _userDAO.GetAllUsers();
-        // }
-
         public List<User> GetAllUsers()    
         {
-            //List<User> allUsers = _userDAO.GetAllUsers();
             try
             {               
             return _userDAO.GetAllUsers();;      
@@ -43,17 +37,40 @@ namespace Services
 
         public User GetUserByUserName(string userWanted)
         {
-            return _userDAO.GetUserByUserName(userWanted);
+            try
+            {
+                return _userDAO.GetUserByUserName(userWanted);
+            }
+            catch (ResourceNotFound)
+            {
+                throw new ResourceNotFound();
+            }
+            
         }             
 
         public User CreateUser(User newUser)
         {
-            return _userDAO.CreateUser(newUser);
+            try
+            {
+                return _userDAO.CreateUser(newUser);
+            }
+            catch(InputInvalidException)
+            {
+                throw new InputInvalidException();
+            }
+            
         }
 
         public User GetUserByUserID(string userID)
         {
-            return _userDAO.GetUserByUserID(userID);
+            try
+            {
+                return _userDAO.GetUserByUserID(userID);
+            }
+            catch(ResourceNotFound)
+            {
+                throw new ResourceNotFound();
+            }
         }
  
     }

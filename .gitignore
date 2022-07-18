@@ -1,6 +1,8 @@
 Sensitive
 appsettings.Development.json
 appsettings.json
+WebAPI/appsettings.Development.json
+WebAPI/appsettings.json
 AuthController-Diagram.publishsettingsKevin-Diagram.jpg
 # globs
 Makefile.in

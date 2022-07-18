@@ -40,17 +40,27 @@ app.MapGet("/users", () =>
     return getAll.GetAllUsers();
 });
 
-
 // Get User by USERNAME
+app.MapGet("/users/{userName}", (string userName) => 
+{
+    var scope = app.Services.CreateScope();
+    UserServices userByUserName = scope.ServiceProvider.GetRequiredService<UserServices>();
+    return userByUserName.GetUserByUserName(userName);
+});
 
 // Get user by UserID
-
+app.MapGet("/users/{userName}", (string userID) => 
+{
+    var scope = app.Services.CreateScope();
+    UserServices userByUserID = scope.ServiceProvider.GetRequiredService<UserServices>();
+    return userByUserID.GetUserByUserID(userID);
+});
 
 // LOGIN user
 
+
+
 // CREATE user
-
-
 
 // app.MapPost("/register", (User user) => 
 // {
@@ -69,11 +79,10 @@ app.MapGet("/users", () =>
 // });
 
 
-// Get USER by UserID
-
-
 
 // TICKETS
+// UPDATE a ticket
+
 
 // Get ALL tickets
 
@@ -95,7 +104,12 @@ app.MapGet("/tickets/author/{userName}", (string userName) =>
 
 
 // Get A ticket by ticketID
-
+app.MapGet("/tickets/{userID}", (string userID) => 
+{
+    var scope = app.Services.CreateScope();
+    TicketServices ticketByUserID = scope.ServiceProvider.GetRequiredService<TicketServices>();
+    return ticketByUserID.GetTicketByUserID(userID);
+});
 
 // Get ticket by STATUS
 
@@ -105,8 +119,5 @@ app.MapGet("/tickets/status/{ticketstatus}", (string ticketstatus) =>
     TicketServices ticketsByStatus = scope.ServiceProvider.GetRequiredService<TicketServices>();
     return ticketsByStatus.RequestTicketsByStatus(ticketstatus);
 });
-
-// UPDATE a ticket
-
 
 app.Run();

@@ -55,7 +55,6 @@ namespace DataAccess
 
         public List<User> GetAllUsers()
         {
-            //List<User> allUsers = new List<User>();
             try
             {            
             return GetUsers(thoseAll);
@@ -68,7 +67,6 @@ namespace DataAccess
 
         public User GetUserByUserName(string userWanted)
         {
-
             User thisUser = new User();
             User tempUserHoldingRole = new User();
 
@@ -96,10 +94,8 @@ namespace DataAccess
             return thisUser;
         }
 
-
         public User CreateUser(User newUser)
         {
-            // will use CreateUser
             User thisUser = newUser;
 
             string putUserInDB = "insert into AutumnERS.users (userName, password, userRole) values (@userName, @password, @userRole);";

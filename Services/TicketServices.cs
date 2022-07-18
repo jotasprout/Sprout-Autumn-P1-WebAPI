@@ -62,8 +62,14 @@ namespace Services
 
         public List<Ticket> GetTickets(string those)
         {
-            return _ticketDAO.GetTickets(those);
-
+            try
+            {
+                return _ticketDAO.GetTickets(those);
+            }
+            catch(ResourceNotFound)
+            {
+                throw new ResourceNotFound();
+            }
         }
         
         
@@ -83,7 +89,6 @@ namespace Services
             {
                 throw new ResourceNotFound();
             }
-
         }
 
 
@@ -102,10 +107,15 @@ namespace Services
 
         public List<Ticket> ResolveThisTicket(string ticketID, User CurrentUserIn)
         {
-            return _ticketDAO.ResolveThisTicket(ticketID, CurrentUserIn);
-
+            try
+            {
+                return _ticketDAO.ResolveThisTicket(ticketID, CurrentUserIn);
+            }
+            catch (ResourceNotFound)
+            {
+                throw new ResourceNotFound();
+            }
         }
-
 
     }
 }

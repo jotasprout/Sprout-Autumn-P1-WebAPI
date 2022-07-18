@@ -52,7 +52,6 @@ public class TicketRepository : IticketDAO
 
     public List<Ticket> GetAllTickets()
     {
-        //List<Ticket> allTickets = new List<Ticket>();
         try
         {        
             return GetTickets(thoseAll);;
@@ -61,7 +60,6 @@ public class TicketRepository : IticketDAO
         {
             throw new ResourceNotFound();
         }        
-        //return allTickets;
     }
 
     public List<Ticket> GetTicketsByUserName(string userIWantTicketsFor)
@@ -116,7 +114,6 @@ public class TicketRepository : IticketDAO
         {
             throw new ResourceNotFound();
         }
-        
     }  
 
     public List<Ticket> RequestTicketsByStatus(string ticketStatus)
@@ -223,9 +220,6 @@ public class TicketRepository : IticketDAO
             {
                 Console.WriteLine("Request submitted successfully. Good luck!");
                 return GetTicketsByUserID(myIDstring);
-                //AllMyTickets = GetTicketsByUserID(myIDstring);
-                // Return myTickets;
-                //throw new UsernameNotAvailable();
             }
             else
             {
@@ -236,7 +230,6 @@ public class TicketRepository : IticketDAO
         {
             throw new InputInvalidException();
         }
-        //return AllMyTickets;
     }
 
 }
