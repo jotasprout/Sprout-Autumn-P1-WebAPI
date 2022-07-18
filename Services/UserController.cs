@@ -15,5 +15,7 @@ public class UserController
     public List<User> GetAllUsers()
     {
         return _service.GetAllUsers();
+        // List<User> allusers = _service.GetAllUsers();
+        // return Results.Accepted("/users", allusers);
     }    
 }
