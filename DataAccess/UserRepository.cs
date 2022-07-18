@@ -39,7 +39,7 @@ namespace DataAccess
 
                 while (reader.Read())
                 {
-                    Console.WriteLine("\t{0}\t{1}\t{2}\t{3}", reader[0], reader[1], reader[2], reader[3]);
+                    //Console.WriteLine("\t{0}\t{1}\t{2}\t{3}", reader[0], reader[1], reader[2], reader[3]);
                     int RoleFromDB = tempUserHoldingRole.userRoleToInt((string)reader[3]); 
                     users.Add(new User((int)reader[0], (string)reader[1], (string)reader[2], (userRole)RoleFromDB));
                 }
@@ -53,22 +53,18 @@ namespace DataAccess
             return users;
         }
 
-
         public List<User> GetAllUsers()
         {
             List<User> allUsers = new List<User>();
             try
             {            
-            GetUsers(thoseAll);
-            return allUsers;
+            return GetUsers(thoseAll);
             }
             catch (ResourceNotFound)
             {
                 throw new ResourceNotFound();
-            }
-            return allUsers;            
+            }         
         }
-
 
         public User GetUserByUserName(string userWanted)
         {
