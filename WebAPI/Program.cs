@@ -85,11 +85,6 @@ app.MapGet("/tickets", () =>
     return getAll.GetAllTickets();
 });
 
-
-// Get ticket by STATUS
-
-// UPDATE a ticket
-
 // Get TICKETS by USERNAME
 app.MapGet("/tickets/author/{userName}", (string userName) => 
 {
@@ -100,4 +95,18 @@ app.MapGet("/tickets/author/{userName}", (string userName) =>
 
 
 // Get A ticket by ticketID
+
+
+// Get ticket by STATUS
+
+app.MapGet("/tickets/status/{ticketstatus}", (string ticketstatus) => 
+{
+    var scope = app.Services.CreateScope();
+    TicketServices ticketsByStatus = scope.ServiceProvider.GetRequiredService<TicketServices>();
+    return ticketsByStatus.RequestTicketsByStatus(ticketstatus);
+});
+
+// UPDATE a ticket
+
+
 app.Run();

@@ -36,6 +36,18 @@ public class TicketController
 
 
 // Get ticket by STATUS
+    public IResult GetTicketsByStatus(string author_fk)
+    {
+        List<Ticket> ticketsByStatus = _service.GetTicketsByStatus(author_fk);
+        try
+        {
+            return Results.Accepted("/tickets/author{username}", ticketsByStatus);
+        }
+        catch(ResourceNotFound)
+        {
+            throw new ResourceNotFound("Indy sez there are no tickets with that status.");
+        }
+    }
 
 // UPDATE a ticket
 

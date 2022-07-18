@@ -87,9 +87,7 @@ public class TicketRepository : IticketDAO
     public List<Ticket> GetTicketsByUserID(string userIWantTicketsFor)
     {
         string byUserQueryWithID = "select * from AutumnERS.tickets where author_fk = " + userIWantTicketsFor + ";";
-        List<Ticket> TicketsFromPeepIWant = new List<Ticket>(); 
-        GetTickets(byUserQueryWithID);
-        return TicketsFromPeepIWant;
+        return GetTickets(byUserQueryWithID);
     }
 
     public List<Ticket> GetTicketsByStatus()
@@ -115,17 +113,27 @@ public class TicketRepository : IticketDAO
                 break;
         }         
         string thoseStatusTickets = "select * from AutumnERS.tickets where status = '" + thisStatus + "';";
-        List<Ticket> statusTickets = new List<Ticket>();
-        GetTickets(thoseStatusTickets);
-        return statusTickets;
+        try
+        {
+            return GetTickets(thoseStatusTickets);
+        }
+        catch(ResourceNotFound)
+        {
+            throw new ResourceNotFound();
+        }
+        
     }  
+
+    public List<Ticket> RequestTicketsByStatus(string ticketStatus)
+    {
+        string byTicketStatus = "select * from AutumnERS.tickets where status = '" + ticketStatus + "';";
+        return GetTickets(byTicketStatus);        
+    }
 
     public List<Ticket> GrabTicketByTicketID(string ticketID)
     {
         string byTicketID = "select * from AutumnERS.tickets where ticketID = " + ticketID + ";";
-        List<Ticket> ticketIWant = new List<Ticket>(); 
-        GetTickets(byTicketID);
-        return ticketIWant;        
+        return GetTickets(byTicketID);        
     }
 
     public List<Ticket> ResolveThisTicket(string ticketID, User CurrentUserIn)
@@ -172,21 +180,19 @@ public class TicketRepository : IticketDAO
             if (itWorked != 0)
             {
                 Console.WriteLine("Ticket updated.");
-                List<Ticket> updatedTicket = GrabTicketByTicketID(ticketID);
-                return updatedTicket;
+                return GrabTicketByTicketID(ticketID);
             }
             else
             {
-                Console.WriteLine("Sorry, that didn't seem to work.");
-                throw new ResourceNotFound();
+                throw new InputInvalidException("Sorry, that didn't seem to work.");
             }
         }
-        catch (ResourceNotFound e)
+        catch (InputInvalidException)
         {
-            Console.WriteLine(e.Message);
+            throw new InputInvalidException();
         }
 
-        return ticketToUpdate;
+        //return ticketToUpdate;
     }
 
     public List<Ticket> CreateTicket(User CurrentUser)
@@ -221,16 +227,21 @@ public class TicketRepository : IticketDAO
             if (itWorked !=0)
             {
                 Console.WriteLine("Request submitted successfully. Good luck!");
-                AllMyTickets = GetTicketsByUserID(myIDstring);
+                return GetTicketsByUserID(myIDstring);
+                //AllMyTickets = GetTicketsByUserID(myIDstring);
                 // Return myTickets;
                 //throw new UsernameNotAvailable();
             }
+            else
+            {
+                throw new InputInvalidException();
+            }
         }
-        catch (UsernameNotAvailable e)
+        catch (InputInvalidException)
         {
-            Console.WriteLine(e.Message);
+            throw new InputInvalidException();
         }
-        return AllMyTickets;
+        //return AllMyTickets;
     }
 
 }

@@ -25,6 +25,7 @@ namespace CustomExceptions
             System.Runtime.Serialization.SerializationInfo info,
             System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
     }
+    
     public class InvalidCredentials : System.Exception
     {
         public InvalidCredentials() { }
@@ -34,5 +35,15 @@ namespace CustomExceptions
             System.Runtime.Serialization.SerializationInfo info,
             System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
     }
+
+    public class InputInvalidException : Exception
+    {
+        public InputInvalidException() { }
+        public InputInvalidException(string message) : base(message) { }
+        public InputInvalidException(string message, System.Exception inner) : base(message, inner) { }
+        protected InputInvalidException(
+        System.Runtime.Serialization.SerializationInfo info,
+        System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+    }    
 }
 

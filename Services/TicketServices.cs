@@ -49,7 +49,14 @@ namespace Services
 
         public List<Ticket> CreateTicket(User CurrentUser)
         {
-            return _ticketDAO.CreateTicket(CurrentUser);
+            try
+            {
+                return _ticketDAO.CreateTicket(CurrentUser);
+            }
+            catch(InputInvalidException)
+            {
+                throw new InputInvalidException();
+            }
         }
 
 
@@ -68,10 +75,24 @@ namespace Services
 
         public List<Ticket> GetTicketsByStatus()
         {
-            return _ticketDAO.GetTicketsByStatus();
+            try
+            {
+                return _ticketDAO.GetTicketsByStatus();
+            }
+            catch(ResourceNotFound)
+            {
+                throw new ResourceNotFound();
+            }
 
         }
-        
+
+
+        public List<Ticket> RequestTicketsByStatus(string ticketStatus)
+        {
+            return _ticketDAO.GetTickets(ticketStatus);        
+        }
+
+
         public List<Ticket> ResolveThisTicket(string ticketID, User CurrentUserIn)
         {
             return _ticketDAO.ResolveThisTicket(ticketID, CurrentUserIn);
