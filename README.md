@@ -33,10 +33,14 @@ Manaagers
 - Filter Tickets by Status, UserName, UserID, TicketID 
 
 ![Register a user](imgs/FILTER-Tickets.jpg)
+
 (image below show users filtered by UserName or UserID)
+
 ![Register a user](imgs/tickets-by-User.jpg)
 - Can either approve or deny requests 
+
 (image below show users filtered by Status)
+
 ![Register a user](imgs/tickets-by-Status.jpg)
 
 ### Technology:
