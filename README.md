@@ -24,20 +24,19 @@ Employees
 - See all their tickets
 
 ![Register a user](imgs/All-MY-Tickets.jpg)
-- Filter Tickets by Status, Date
 
 Manaagers
-- Can either approve or deny requests
-
-![Register a user](imgs/Register.jpg)
 - See All Users
-- Filter Users by UserID, UserName
-
-![Register a user](imgs/tickets-by-User.jpg)
+- Find specific Users by UserID, UserName
 - See All Tickets
 
-- Filter Tickets by Status, UserName, UserID, TicketID
+- Filter Tickets by Status, UserName, UserID, TicketID 
 
+![Register a user](imgs/FILTER-Tickets.jpg)
+(image below show users filtered by UserName or UserID)
+![Register a user](imgs/tickets-by-User.jpg)
+- Can either approve or deny requests 
+(image below show users filtered by Status)
 ![Register a user](imgs/tickets-by-Status.jpg)
 
 ### Technology:
