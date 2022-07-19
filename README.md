@@ -21,7 +21,7 @@ Employees
 - can submit expense requests
 
 ![Register a user](imgs/Main-Employee.jpg)
-- See all their tickets
+- See all their own tickets (note difference between this and image at bottom when a Manager filters by employee is Managers also see the UPDATE menu)
 
 ![Register a user](imgs/All-MY-Tickets.jpg)
 
