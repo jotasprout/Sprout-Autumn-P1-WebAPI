@@ -66,7 +66,7 @@ app.MapGet("/users/userid/{userID}", (string userID, UserController controller) 
 
 // CREATE user
 
-app.MapPost("/register", (User user) => 
+//app.MapPost("/register", (User user) => 
 // {
 //     var scope = app.Services.CreateScope();
 //     AuthServices service = scope.ServiceProvider.GetRequiredService<AuthServices>();
@@ -86,7 +86,7 @@ app.MapPost("/register", (User user) =>
 // TICKETS
 // UPDATE a ticket
 
-app.MapGet("/tickets", (TicketController controller) => controller.GetAllTickets()));
+app.MapGet("/tickets", (TicketController controller) => controller.GetAllTickets());
 // Get ALL tickets
 // app.MapGet("/tickets", () =>
 // {
@@ -97,7 +97,7 @@ app.MapGet("/tickets", (TicketController controller) => controller.GetAllTickets
 // });
 
 
-app.MapGet("/tickets/author/{userName}", (string userName, TicketController controller) => controller.GetTicketsByUserName(userName));
+app.MapGet("/tickets/username/{userName}", (string userName, TicketController controller) => controller.GetTicketsByUserName(userName));
 // Get TICKETS by USERNAME
 // app.MapGet("/tickets/author/{userName}", (string userName) => 
 // {
@@ -135,4 +135,4 @@ app.MapGet("/tickets/status/{ticketstatus}", (string ticketstatus, TicketControl
 //     return ticketsByStatus.RequestTicketsByStatus(ticketstatus);
 // });
 
-// app.Run();
+app.Run();
