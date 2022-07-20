@@ -32,16 +32,16 @@ app.UseSwaggerUI();
 // USERS
 
 app.MapGet("/users", (UserController controller) => controller.GetAllUsers());
-// app.MapGet("/users", () =>
-// {
-//     var scope = app.Services.CreateScope();
-//     UserServices getAll = scope.ServiceProvider.GetRequiredService<UserServices>();
+//app.MapGet("/users", () =>
+//{
+//    var scope = app.Services.CreateScope();
+//    UserServices getAll = scope.ServiceProvider.GetRequiredService<UserServices>();
 
-//     return getAll.GetAllUsers();
-// });
+//    return getAll.GetAllUsers();
+//});
 
 
-app.MapGet("/users/{userName}", (string userName, UserController controller) => controller.GetUserByUserName(userName));
+app.MapGet("/users/username/{userName}", (string userName, UserController controller) => controller.GetUserByUserName(userName));
 // Get User by USERNAME
 // app.MapGet("/users/{userName}", (string userName) => 
 // {
@@ -66,7 +66,7 @@ app.MapGet("/users/userid/{userID}", (string userID, UserController controller) 
 
 // CREATE user
 
-// app.MapPost("/register", (User user) => 
+app.MapPost("/register", (User user) => 
 // {
 //     var scope = app.Services.CreateScope();
 //     AuthServices service = scope.ServiceProvider.GetRequiredService<AuthServices>();
@@ -86,7 +86,7 @@ app.MapGet("/users/userid/{userID}", (string userID, UserController controller) 
 // TICKETS
 // UPDATE a ticket
 
-app.MapGet("/tickets", (TicketController controller) => controller.GetAllTickets());
+app.MapGet("/tickets", (TicketController controller) => controller.GetAllTickets()));
 // Get ALL tickets
 // app.MapGet("/tickets", () =>
 // {

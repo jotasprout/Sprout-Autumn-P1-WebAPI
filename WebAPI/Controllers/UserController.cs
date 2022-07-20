@@ -47,7 +47,7 @@ public class UserController
         try
         {
             User userByUserName = _service.GetUserByUserName(userWanted);
-            return Results.Accepted("/users/{userName}", userByUserName);
+            return Results.Accepted("/users/username/{userName}", userByUserName);
         }
         catch (ResourceNotFound)
         {

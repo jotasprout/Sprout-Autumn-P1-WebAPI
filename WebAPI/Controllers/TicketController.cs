@@ -34,7 +34,7 @@ public class TicketController
     // Get A ticket by ticketID
     public IResult GetTicketByTicketID(string ticketID)
     {
-        List<Ticket> ticketByTicketID = _service.RequestTicketsByStatus(ticketID);
+        List<Ticket> ticketByTicketID = _service.GetTicketByTicketID(ticketID);
         try
         {
             return Results.Accepted("/tickets/ticketid/{ticketID}", ticketByTicketID);
@@ -52,7 +52,7 @@ public class TicketController
         List<Ticket> ticketsByStatus = _service.RequestTicketsByStatus(ticketStatus);
         try
         {
-            return Results.Accepted("/tickets/author{username}", ticketsByStatus);
+            return Results.Accepted("/tickets/status/{ticketstatus}", ticketsByStatus);
         }
         catch(ResourceNotFound)
         {
@@ -66,7 +66,7 @@ public class TicketController
         List<Ticket> ticketsByUserID = _service.GetTicketsByUserID(author_fk);
         try
         {
-            return Results.Accepted("/tickets/author{userID}", ticketsByUserID);
+            return Results.Accepted("/tickets/userid/{userID}", ticketsByUserID);
         }
         catch(ResourceNotFound)
         {
@@ -80,7 +80,7 @@ public class TicketController
         List<Ticket> ticketsByUserName = _service.GetTicketsByUserName(author_fk);
         try
         {
-            return Results.Accepted("/tickets/author{username}", ticketsByUserName);
+            return Results.Accepted("/tickets/author/{username}", ticketsByUserName);
         }
         catch(ResourceNotFound)
         {
