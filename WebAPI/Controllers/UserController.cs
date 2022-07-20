@@ -28,7 +28,7 @@ public class UserController
     }    
 
     // Get USER by UserID
-    public IResult UserByUserID(string userID)    
+    public IResult GetUserByUserID(string userID)    
     {
         try
         {

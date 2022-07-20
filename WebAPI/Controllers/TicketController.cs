@@ -60,7 +60,19 @@ public class TicketController
         }
     }
 
-
+    // Get TICKETS by UserID
+    public IResult GetTicketsByUserID(string author_fk)
+    {
+        List<Ticket> ticketsByUserID = _service.GetTicketsByUserID(author_fk);
+        try
+        {
+            return Results.Accepted("/tickets/author{userID}", ticketsByUserID);
+        }
+        catch(ResourceNotFound)
+        {
+            throw new ResourceNotFound("Indy sez that employee's got no ticket.");
+        }
+    }
 
     // Get TICKETS by USERNAME
     public IResult GetTicketsByUserName(string author_fk)

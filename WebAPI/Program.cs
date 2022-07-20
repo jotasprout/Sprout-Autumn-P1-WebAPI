@@ -41,7 +41,7 @@ app.MapGet("/users", (UserController controller) => controller.GetAllUsers());
 // });
 
 
-app.MapGet("/users/{userName}", (UserController controller) => controller.GetUserByUserName(userName));
+app.MapGet("/users/{userName}", (string userName, UserController controller) => controller.GetUserByUserName(userName));
 // Get User by USERNAME
 // app.MapGet("/users/{userName}", (string userName) => 
 // {
@@ -51,7 +51,7 @@ app.MapGet("/users/{userName}", (UserController controller) => controller.GetUse
 // });
 
 
-app.MapGet("/users/userid/{userID}", (UserController controller) => controller.GetUserByUserID(userID));
+app.MapGet("/users/userid/{userID}", (string userID, UserController controller) => controller.GetUserByUserID(userID));
 // Get user by UserID
 // app.MapGet("/users/userid/{userID}", (string userID) => 
 // {
@@ -86,7 +86,7 @@ app.MapGet("/users/userid/{userID}", (UserController controller) => controller.G
 // TICKETS
 // UPDATE a ticket
 
-app.MapGet("/tickets", (UserController controller) => controller.GetAllTickets());
+app.MapGet("/tickets", (TicketController controller) => controller.GetAllTickets());
 // Get ALL tickets
 // app.MapGet("/tickets", () =>
 // {
@@ -97,7 +97,7 @@ app.MapGet("/tickets", (UserController controller) => controller.GetAllTickets()
 // });
 
 
-app.MapGet("/tickets/author/{userName}", (UserController controller) => controller.GetTicketsByUserName(userName));
+app.MapGet("/tickets/author/{userName}", (string userName, TicketController controller) => controller.GetTicketsByUserName(userName));
 // Get TICKETS by USERNAME
 // app.MapGet("/tickets/author/{userName}", (string userName) => 
 // {
@@ -106,7 +106,7 @@ app.MapGet("/tickets/author/{userName}", (UserController controller) => controll
 //     return ticketsByUserName.GetTicketsByUserName(userName);
 // });
 
-app.MapGet("/users/userid/{userID}", (UserController controller) => controller.GetUserByUserID(userID));
+app.MapGet("/tickets/userid/{userID}", (string userID, TicketController controller) => controller.GetTicketsByUserID(userID));
 // Get A ticket by UserID
 // app.MapGet("/tickets/userid/{userID}", (string userID) => 
 // {
@@ -116,7 +116,7 @@ app.MapGet("/users/userid/{userID}", (UserController controller) => controller.G
 // });
 
 
-app.MapGet("/tickets/ticketid/{ticketID}", (UserController controller) => controller.GetTicketByTicketID(ticketID));
+app.MapGet("/tickets/ticketid/{ticketID}", (string ticketID, TicketController controller) => controller.GetTicketByTicketID(ticketID));
 // Get A ticket by ticketID
 // app.MapGet("/tickets/ticketid/{ticketID}", (string ticketID) => 
 // {
@@ -126,7 +126,7 @@ app.MapGet("/tickets/ticketid/{ticketID}", (UserController controller) => contro
 // });
 
 
-app.MapGet("/tickets/status/{ticketstatus}", (UserController controller) => controller.RequestTicketsByStatus(ticketstatus));
+app.MapGet("/tickets/status/{ticketstatus}", (string ticketstatus, TicketController controller) => controller.RequestTicketsByStatus(ticketstatus));
 // Get ticket by STATUS
 // app.MapGet("/tickets/status/{ticketstatus}", (string ticketstatus) => 
 // {
