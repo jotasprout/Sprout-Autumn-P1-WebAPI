@@ -68,13 +68,13 @@ public class AuthServices
     }
 
 
-    public User RegisterUser(string userName, string password, userRole userRole)
+    public User RegisterUser(User newUser)
     {
-        User thisUser = new User(userName, password, userRole);
+        User thisUser = newUser;
 
         try
         {
-            User userWannabe = _userDAO.GetUserByUserName(userName);
+            User userWannabe = _userDAO.GetUserByUserName(thisUser.userName);
             if (userWannabe.userName == thisUser.userName)
             {
                 throw new UsernameNotAvailable();

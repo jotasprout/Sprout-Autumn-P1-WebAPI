@@ -187,19 +187,8 @@ public class TicketRepository : IticketDAO
         //return ticketToUpdate;
     }
 
-    public List<Ticket> CreateTicket(User CurrentUser)
+    public List<Ticket> CreateTicket(Ticket myNewTicket)
     {
-        // CurrentUser info
-        int myIDint = CurrentUser.userID;
-        string myIDstring = myIDint.ToString();
-
-        // Ticket info
-        Console.WriteLine("What is it?");
-        string ticketDescription = Console.ReadLine();
-        Console.WriteLine("How much?");
-        string ticketCost = Console.ReadLine();
-        Console.WriteLine("Attempting to create Ticket");
-
         List<Ticket> AllMyTickets = new List<Ticket>();
 
         string createTicketSQL = "insert into AutumnERS.tickets (author_fk, description, amount) values (@author, @description, @amount);";
@@ -207,9 +196,9 @@ public class TicketRepository : IticketDAO
         SqlConnection makeConnection = _connectionFactory.GetConnection();
         SqlCommand createThisTicket = new SqlCommand(createTicketSQL, makeConnection);
 
-        createThisTicket.Parameters.AddWithValue("@author", myIDstring);
-        createThisTicket.Parameters.AddWithValue("@description", ticketDescription);
-        createThisTicket.Parameters.AddWithValue("@amount", ticketCost);
+        createThisTicket.Parameters.AddWithValue("@author", myNewTicket.author_fk);
+        createThisTicket.Parameters.AddWithValue("@description", myNewTicket.description);
+        createThisTicket.Parameters.AddWithValue("@amount", myNewTicket.amount);
 
         try
         {
@@ -219,7 +208,8 @@ public class TicketRepository : IticketDAO
             if (itWorked !=0)
             {
                 Console.WriteLine("Request submitted successfully. Good luck!");
-                return GetTicketsByUserID(myIDstring);
+                string authorString = myNewTicket.author_fk.ToString();
+                return GetTicketsByUserID(authorString);
             }
             else
             {

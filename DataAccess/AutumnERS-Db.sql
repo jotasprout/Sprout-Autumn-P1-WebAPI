@@ -3,6 +3,7 @@
 select * from AutumnERS.tickets where author_fk = 4;
 
 UPDATE AutumnERS.tickets SET status = 'Approved' WHERE ticketID = 16;
+UPDATE AutumnERS.users SET userRole = 'employee' WHERE userID = 16;
 
 -- OLD -- 
 

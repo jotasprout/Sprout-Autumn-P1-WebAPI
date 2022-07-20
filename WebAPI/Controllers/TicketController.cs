@@ -16,6 +16,25 @@ public class TicketController
     // UPDATE a ticket
 
 
+    // CREATE a ticket
+
+    //public IResult CreateTicket(string authorID, string Description, string cost)
+    public IResult CreateTicket(Ticket thisNewTicket)
+    {
+        //List<Ticket> newTicket = _service.CreateTicket(authorID, Description, cost);
+        List<Ticket> newTicket = _service.CreateTicket(thisNewTicket);
+        try
+        {
+            return Results.Created("/tickets/create", newTicket);
+        }
+        catch(InputInvalidException)
+        {
+            throw new InputInvalidException();
+        }
+
+    }
+
+
     // Get ALL tickets
     public IResult GetAllTickets()    
     {

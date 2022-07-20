@@ -54,11 +54,11 @@ namespace Services
         }  
 
 
-        public List<Ticket> CreateTicket(User CurrentUser)
+        public List<Ticket> CreateTicket(Ticket newTicket)
         {
             try
             {
-                return _ticketDAO.CreateTicket(CurrentUser);
+                return _ticketDAO.CreateTicket(newTicket);
             }
             catch(InputInvalidException)
             {

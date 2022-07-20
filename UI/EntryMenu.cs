@@ -8,6 +8,16 @@ namespace UI
 {
     public class EntryMenu
     {
+
+        private readonly AuthServices _authServices;
+        public AuthController (AuthServices services)
+        {
+            _authServices = services;
+        }
+        public AuthController ()
+        {
+            _authServices = new AuthServices();
+        }
         public void Begin()
         {
             do
@@ -50,7 +60,7 @@ namespace UI
             User userKnocking;
             try
             {
-                userKnocking = new AuthServices().LoginUser(userName, password);
+                userKnocking = _authServices.LoginUser(userName, password);
                 if (userKnocking.password == password && userKnocking.userName == userName)
                 {
                     if (userKnocking.userRole == userRole.Manager)
@@ -110,7 +120,9 @@ namespace UI
                     break;
             }
             Console.WriteLine(" Attempting to register userName: " + maybeUserName + ", password: " + maybePassword + ", Role: " + maybeRole + ".");
-            User maybeUser = new AuthServices().RegisterUser(maybeUserName, maybePassword, maybeRole);
+            User maybeUser = new User(maybeUserName, maybePassword, maybeRole);
+            return _authServices.RegisterUser(maybeUser);
+
             //Environment.Exit(0);
             DisplayLoginUI();
         }

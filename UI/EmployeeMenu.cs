@@ -28,7 +28,16 @@ namespace UI
             switch (maybeTask)
             {
                 case "1": // Create
-                    _tix.CreateTicket(CurrentUserIn);                    
+                    // CurrentUser info
+                    int myIDint = CurrentUser.userID;
+                    string myIDstring = myIDint.ToString();
+                    // Ticket info
+                    Console.WriteLine("What is it?");
+                    string ticketDescription = Console.ReadLine();
+                    Console.WriteLine("How much?");
+                    string ticketCost = Console.ReadLine();
+                    List<Ticket> myNewTicket = new List<Ticket>(myIDstring, ticketDescription, ticketCost);
+                    _tix.CreateTicket(myNewTicket);                    
                     break;
                 case "2": // View
                     Console.WriteLine("Tickets submitted by .");

@@ -57,6 +57,10 @@ namespace Services
             {
                 throw new InputInvalidException();
             }
+            catch(UsernameNotAvailable)
+            {
+                throw new UsernameNotAvailable();
+            }            
         }
 
         public User GetUserByUserID(string userID)

@@ -17,9 +17,9 @@ builder.Services.AddTransient<TicketController>();
 builder.Services.AddScoped<IticketDAO, TicketRepository>();
 builder.Services.AddTransient<TicketServices>();
 builder.Services.AddTransient<AuthServices>();
+builder.Services.AddTransient<AuthController>();
 
-
-// builder.Services.AddControllers();
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -66,28 +66,21 @@ app.MapGet("/users/userid/{userID}", (string userID, UserController controller) 
 
 // CREATE user
 
-//app.MapPost("/register", (User user) => 
-// {
-//     var scope = app.Services.CreateScope();
-//     AuthServices service = scope.ServiceProvider.GetRequiredService<AuthServices>();
-//     try
-//     {
-//         service.RegisterUser(user);
-//         return Results.Created("/users", user);
-//     }
-//     catch (UsernameNotAvailable)
-//     {
-//         return Results.Conflict("this username already exists.");
-//     }
-// });
+app.MapPost("/register", (User newUser, AuthController controller) => controller.RegisterUser(newUser));
+
 
 
 
 // TICKETS
 // UPDATE a ticket
 
-app.MapGet("/tickets", (TicketController controller) => controller.GetAllTickets());
+// CREATE a ticket
+//app.MapPost("/tickets/create", (string authorID, string Description, string cost, TicketController controller) => controller.CreateTicket(authorID, Description, cost));
+app.MapPost("/tickets/create", (Ticket newTicket, TicketController controller) => controller.CreateTicket(newTicket));
+
 // Get ALL tickets
+app.MapGet("/tickets", (TicketController controller) => controller.GetAllTickets());
+
 // app.MapGet("/tickets", () =>
 // {
 //     var scope = app.Services.CreateScope();
