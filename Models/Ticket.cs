@@ -31,6 +31,8 @@ public class Ticket
         this.amount = amount;
     }
 
+    public Ticket(){}
+
     // for putting objects into database
     public Ticket(
         int author_fk,

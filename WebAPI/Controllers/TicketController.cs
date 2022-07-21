@@ -22,9 +22,9 @@ public class TicketController
     public IResult CreateTicket(Ticket thisNewTicket)
     {
         //List<Ticket> newTicket = _service.CreateTicket(authorID, Description, cost);
-        List<Ticket> newTicket = _service.CreateTicket(thisNewTicket);
         try
         {
+            List<Ticket> newTicket = _service.CreateTicket(thisNewTicket);
             return Results.Created("/tickets/create", newTicket);
         }
         catch(InputInvalidException)
