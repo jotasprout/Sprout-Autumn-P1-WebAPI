@@ -128,31 +128,31 @@ public class TicketRepository : IticketDAO
         return GetTickets(byTicketID);        
     }
 
-    public List<Ticket> ResolveThisTicket(string ticketID, User CurrentUserIn)
+    public List<Ticket> ResolveThisTicket(Ticket updatedTicket)
     {
         // CurrentUser info
-        int myIDint = CurrentUserIn.userID;
+        //int myIDint = CurrentUserIn.userID;
         // model of how to use it
         //myTickets.GetTicketsByUserID(myIDstring);
         // ticket info follows
-        List<Ticket> ticketToUpdate = new List<Ticket>();
+        //List<Ticket> ticketToUpdate = updatedTicket;
 
-        Console.WriteLine("Approve or Deny?");
-        Console.WriteLine("[1] Approve");
-        Console.WriteLine("[2] Deny");
-        string newStatus = Console.ReadLine();
-        switch (newStatus)
-        {
-            case "1": // Approve
-                newStatus = "Approved";
-                break;
-            case "2": // Deny
-                newStatus = "Denied";                   
-                break;                   
-            default:
-                Console.WriteLine("What kind of nonsense was that?");
-                break;
-        } 
+        // Console.WriteLine("Approve or Deny?");
+        // Console.WriteLine("[1] Approve");
+        // Console.WriteLine("[2] Deny");
+        // string newStatus = Console.ReadLine();
+        // switch (newStatus)
+        // {
+        //     case "1": // Approve
+        //         newStatus = "Approved";
+        //         break;
+        //     case "2": // Deny
+        //         newStatus = "Denied";                   
+        //         break;                   
+        //     default:
+        //         Console.WriteLine("What kind of nonsense was that?");
+        //         break;
+        // } 
 
         string updateTicketStatement = "UPDATE AutumnERS.tickets SET status = @status, resolver_fk = @myIDint WHERE ticketID = @ticketID;";
         //string updateTicketStatement = "UPDATE AutumnERS.tickets SET status = '" + newStatus + "', resolver_fk =  WHERE ticketID = " + ticketID + ";";
@@ -160,9 +160,9 @@ public class TicketRepository : IticketDAO
         SqlConnection makeConnection = _connectionFactory.GetConnection();
         SqlCommand updateTicket = new SqlCommand(updateTicketStatement, makeConnection);
         
-        updateTicket.Parameters.AddWithValue("@ticketID", ticketID);
-        updateTicket.Parameters.AddWithValue("@myIDint", myIDint);
-        updateTicket.Parameters.AddWithValue("@status", newStatus);
+        updateTicket.Parameters.AddWithValue("@ticketID", updatedTicket.ticketID);
+        updateTicket.Parameters.AddWithValue("@myIDint", updatedTicket.resolver_fk);
+        updateTicket.Parameters.AddWithValue("@status", updatedTicket.status);
 
         try
         {
@@ -172,7 +172,7 @@ public class TicketRepository : IticketDAO
             if (itWorked != 0)
             {
                 Console.WriteLine("Ticket updated.");
-                return GetTicketByTicketID(ticketID);
+                return GetTicketByTicketID(updatedTicket.ticketID.ToString());
             }
             else
             {

@@ -14,7 +14,19 @@ public class TicketController
     }
 
     // UPDATE a ticket
-
+    public IResult ResolveThisTicket(Ticket updateThisTicket)
+    {
+        //List<Ticket> newTicket = _service.CreateTicket(authorID, Description, cost);
+        try
+        {
+            List<Ticket> updatedTicket = _service.ResolveThisTicket(updateThisTicket);
+            return Results.Created("/tickets/update", updatedTicket);
+        }
+        catch(InputInvalidException)
+        {
+            throw new InputInvalidException();
+        }
+    }
 
     // CREATE a ticket
 

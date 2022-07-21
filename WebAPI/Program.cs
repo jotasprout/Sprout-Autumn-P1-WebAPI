@@ -46,7 +46,7 @@ app.MapPost("/register", (User newUser, AuthController controller) => controller
 
 // TICKETS
 // UPDATE a ticket
-
+app.MapPost("/tickets/update", (Ticket updatedTicket, TicketController controller) => controller.ResolveThisTicket(updatedTicket));
 
 // CREATE a ticket
 //app.MapPost("/tickets/create", (string authorID, string Description, string cost, TicketController controller) => controller.CreateTicket(authorID, Description, cost));

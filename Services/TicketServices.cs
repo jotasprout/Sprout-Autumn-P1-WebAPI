@@ -112,11 +112,11 @@ namespace Services
         }
 
 
-        public List<Ticket> ResolveThisTicket(string ticketID, User CurrentUserIn)
+        public List<Ticket> ResolveThisTicket(Ticket updatedTicket)
         {
             try
             {
-                return _ticketDAO.ResolveThisTicket(ticketID, CurrentUserIn);
+                return _ticketDAO.ResolveThisTicket(updatedTicket);
             }
             catch (ResourceNotFound)
             {

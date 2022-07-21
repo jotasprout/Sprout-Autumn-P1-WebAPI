@@ -11,7 +11,7 @@ namespace DataAccess
         public List<Ticket> GetTicketsByStatus();
         public List<Ticket> RequestTicketsByStatus(string ticketStatus);
         public List<Ticket> GetTicketByTicketID(string ticketID);
-        public List<Ticket> ResolveThisTicket(string ticketID, User CurrentUserIn);
+        public List<Ticket> ResolveThisTicket(Ticket ticketToUpdate);
         public List<Ticket> CreateTicket(Ticket newTicket);
     }
 
