@@ -44,8 +44,6 @@ public class Ticket
         this.amount = amount;
     }
 
-
-
     public Ticket(
         string description,
         decimal amount

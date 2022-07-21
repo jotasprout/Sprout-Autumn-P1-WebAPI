@@ -5,7 +5,7 @@ using Models;
 using Sensitive;
 // using Microsoft.AspNetCore.Mvc;
 using WebAPI.Controllers;
-// using Microsoft.AspNetCore.Http.Json;
+//using Microsoft.AspNetCore.Http.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,45 +30,18 @@ app.UseSwaggerUI();
 
 
 // USERS
-
+// Get ALL users
 app.MapGet("/users", (UserController controller) => controller.GetAllUsers());
-//app.MapGet("/users", () =>
-//{
-//    var scope = app.Services.CreateScope();
-//    UserServices getAll = scope.ServiceProvider.GetRequiredService<UserServices>();
-
-//    return getAll.GetAllUsers();
-//});
-
-
-app.MapGet("/users/username/{userName}", (string userName, UserController controller) => controller.GetUserByUserName(userName));
 // Get User by USERNAME
-// app.MapGet("/users/{userName}", (string userName) => 
-// {
-//     var scope = app.Services.CreateScope();
-//     UserServices userByUserName = scope.ServiceProvider.GetRequiredService<UserServices>();
-//     return userByUserName.GetUserByUserName(userName);
-// });
-
-
-app.MapGet("/users/userid/{userID}", (string userID, UserController controller) => controller.GetUserByUserID(userID));
+app.MapGet("/users/username/{userName}", (string userName, UserController controller) => controller.GetUserByUserName(userName));
 // Get user by UserID
-// app.MapGet("/users/userid/{userID}", (string userID) => 
-// {
-//     var scope = app.Services.CreateScope();
-//     UserServices userByUserID = scope.ServiceProvider.GetRequiredService<UserServices>();
-//     return userByUserID.GetUserByUserID(userID);
-// });
+app.MapGet("/users/userid/{userID}", (string userID, UserController controller) => controller.GetUserByUserID(userID));
 
 // LOGIN user
 
 
-
 // CREATE user
-
 app.MapPost("/register", (User newUser, AuthController controller) => controller.RegisterUser(newUser));
-
-
 
 
 // TICKETS

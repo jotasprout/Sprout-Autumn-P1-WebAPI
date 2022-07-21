@@ -31,7 +31,6 @@ public class TicketController
         {
             throw new InputInvalidException();
         }
-
     }
 
 
