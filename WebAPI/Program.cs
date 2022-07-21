@@ -38,7 +38,7 @@ app.MapGet("/users/username/{userName}", (string userName, UserController contro
 app.MapGet("/users/userid/{userID}", (string userID, UserController controller) => controller.GetUserByUserID(userID));
 
 // LOGIN user
-
+app.MapPost("/login", (string userName, string password, AuthController controller) => controller.LoginUser(newUser));
 
 // CREATE user
 app.MapPost("/register", (User newUser, AuthController controller) => controller.RegisterUser(newUser));
@@ -46,6 +46,7 @@ app.MapPost("/register", (User newUser, AuthController controller) => controller
 
 // TICKETS
 // UPDATE a ticket
+
 
 // CREATE a ticket
 //app.MapPost("/tickets/create", (string authorID, string Description, string cost, TicketController controller) => controller.CreateTicket(authorID, Description, cost));

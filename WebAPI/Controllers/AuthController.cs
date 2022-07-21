@@ -20,6 +20,18 @@ namespace WebAPI.Controllers
         // ADD a TRY call to the AuthService LOGIN method and return user info with a 200 STATUS
         // ADD a CATCH and CUSTOM EXCEPTION to the LOGIN method below and return a 401 STATUS    
 
+        public IResult LoginUser(User user)
+        {
+            try
+            {
+                _authServices.LoginUser(user);
+                return Results.Created("/login", user);                
+            }
+            catch (InvalidCredentials)
+            {
+                return Results.Conflict("Sorry, that username isn't available. Keep trying, pal.");
+            }
+        }
 
 
         // In an AUTH CONTROLLER CLASS

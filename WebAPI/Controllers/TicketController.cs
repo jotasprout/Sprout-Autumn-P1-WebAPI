@@ -33,7 +33,6 @@ public class TicketController
         }
     }
 
-
     // Get ALL tickets
     public IResult GetAllTickets()    
     {
