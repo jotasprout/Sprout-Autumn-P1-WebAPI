@@ -38,7 +38,7 @@ app.MapGet("/users/username/{userName}", (string userName, UserController contro
 app.MapGet("/users/userid/{userID}", (string userID, UserController controller) => controller.GetUserByUserID(userID));
 
 // LOGIN user
-app.MapPost("/login", (string userName, string password, AuthController controller) => controller.LoginUser(newUser));
+app.MapPost("/login", (string userName, string password, AuthController controller) => controller.LoginUser(userName, password));
 
 // CREATE user
 app.MapPost("/register", (User newUser, AuthController controller) => controller.RegisterUser(newUser));
