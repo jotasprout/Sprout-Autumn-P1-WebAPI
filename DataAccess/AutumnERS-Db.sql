@@ -47,6 +47,10 @@ UPDATE AutumnERS.users SET userRole = 'employee' WHERE userID = 16;
 UPDATE AutumnERS.users SET userRole = 'employee' WHERE userID = 3;
 UPDATE AutumnERS.users SET userRole = 'employee' WHERE userID = 4;
 
+SELECT * from AutumnERS.users;
+
+alter table AutumnERS.users ADD status varchar (50) default 'active';
+
 insert into AutumnERS.users (userName, password, userRole) values ('paulstanley', 'kiss', 'manager');	 -- ID = 1
 insert into AutumnERS.users (userName, password, userRole) values ('genesimmons', 'kiss', 'manager');	 -- ID = 2
 insert into AutumnERS.users (userName, password) values ('petercriss', 'kiss');							 -- ID = 3
@@ -57,6 +61,49 @@ insert into AutumnERS.users (userName, password) values ('brucekulick', 'kiss');
 insert into AutumnERS.users (userName, password) values ('markstjohn', 'kiss');							 -- ID = 8
 insert into AutumnERS.users (userName, password) values ('vinnievincent', 'kiss');						 -- ID = 9
 insert into AutumnERS.users (userName, password) values ('tommythayer', 'kiss');						 -- ID = 10
+-- DavidLeeRoth																							 -- ID = 11
+-- SammyHagar																							 -- ID = 13
+-- EddieVanHalen																						 -- ID = 14
+-- AlexVanHalen																							 -- ID = 15
+-- MichaelAnthony																						 -- ID = 16
+-- GaryCherone																							 -- ID = 17
+
+DELETE FROM AutumnERS.users where userID = 6;
+DELETE FROM AutumnERS.users where userID = 9;
+DELETE FROM AutumnERS.users where userID = 12;
+
+UPDATE AutumnERS.users SET status = 'active' WHERE userID = 1;	
+UPDATE AutumnERS.users SET status = 'active' WHERE userID = 2;	
+UPDATE AutumnERS.users SET status = 'active' WHERE userID = 3;	
+UPDATE AutumnERS.users SET status = 'active' WHERE userID = 4;	
+UPDATE AutumnERS.users SET status = 'active' WHERE userID = 5;	
+UPDATE AutumnERS.users SET status = 'active' WHERE userID = 6;	
+UPDATE AutumnERS.users SET status = 'active' WHERE userID = 7;	
+UPDATE AutumnERS.users SET status = 'active' WHERE userID = 8;	
+UPDATE AutumnERS.users SET status = 'active' WHERE userID = 9;	
+UPDATE AutumnERS.users SET status = 'active' WHERE userID = 10;	
+UPDATE AutumnERS.users SET status = 'active' WHERE userID = 11;	
+UPDATE AutumnERS.users SET status = 'active' WHERE userID = 12;	
+UPDATE AutumnERS.users SET status = 'active' WHERE userID = 13;	
+UPDATE AutumnERS.users SET status = 'active' WHERE userID = 14;	
+UPDATE AutumnERS.users SET status = 'active' WHERE userID = 15;	
+UPDATE AutumnERS.users SET status = 'active' WHERE userID = 16;	
+UPDATE AutumnERS.users SET status = 'active' WHERE userID = 17;	
+
+UPDATE AutumnERS.users SET status = 'inactive' WHERE userID = 7;	
+UPDATE AutumnERS.users SET status = 'inactive' WHERE userID = 9;	
+UPDATE AutumnERS.users SET status = 'inactive' WHERE userID = 10;	
+UPDATE AutumnERS.users SET status = 'inactive' WHERE userID = 11;	
+UPDATE AutumnERS.users SET status = 'inactive' WHERE userID = 12;	
+UPDATE AutumnERS.users SET status = 'inactive' WHERE userID = 17;
+
+
+DELETE FROM AutumnERS.tickets where ticketID = 12;
+DELETE FROM AutumnERS.tickets where ticketID = 13;
+DELETE FROM AutumnERS.tickets where ticketID = 14;
+DELETE FROM AutumnERS.tickets where ticketID = 15;
+DELETE FROM AutumnERS.tickets where ticketID = 16;
+DELETE FROM AutumnERS.tickets where ticketID = 23;
 
 select * from AutumnERS.tickets where author_fk = 4;
 UPDATE AutumnERS.tickets SET status = 'Approved' WHERE ticketID = 16;
