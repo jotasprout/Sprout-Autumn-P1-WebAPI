@@ -31,6 +31,7 @@ create table AutumnERS.users(
 );
 
 drop table AutumnERS.tickets;
+truncate table AutumnERS.tickets;
 
 create table AutumnERS.tickets(
 	ticketID int identity (1,1) not null,
@@ -42,18 +43,14 @@ create table AutumnERS.tickets(
 	primary key(ticketID)
 );
 
-insert into AutumnERS.users (userName, password, userRole) values ('paulstanley', 'kiss', 'manager');
-insert into AutumnERS.users (userName, password, userRole) values ('genesimmons', 'kiss', 'manager');
-insert into AutumnERS.users (userName, password) values ('petercriss', 'kiss');
-insert into AutumnERS.users (userName, password) values ('acefrehley', 'kiss');
+UPDATE AutumnERS.users SET userRole = 'employee' WHERE userID = 16;
+UPDATE AutumnERS.users SET userRole = 'employee' WHERE userID = 3;
+UPDATE AutumnERS.users SET userRole = 'employee' WHERE userID = 4;
 
-insert into AutumnERS.tickets (author_fk, resolver_fk, description, status, amount) values (3, 2, 'kitty litter', 'pending', 34.99);
-insert into AutumnERS.tickets (author_fk, resolver_fk, description, status, amount) values (4, 2, 'cocaine', 'pending', 678.99);
-insert into AutumnERS.tickets (author_fk, resolver_fk, description, status, amount) values (4, 2, 'guitar strings', 'pending', 22.99);
-insert into AutumnERS.tickets (author_fk, resolver_fk, description, status, amount) values (4, 2, 'alcohol', 'pending', 965.32);
-
-truncate table AutumnERS.tickets;
-
+insert into AutumnERS.users (userName, password, userRole) values ('paulstanley', 'kiss', 'manager');	 -- ID = 1
+insert into AutumnERS.users (userName, password, userRole) values ('genesimmons', 'kiss', 'manager');	 -- ID = 2
+insert into AutumnERS.users (userName, password) values ('petercriss', 'kiss');							 -- ID = 3
+insert into AutumnERS.users (userName, password) values ('acefrehley', 'kiss');							 -- ID = 4
 insert into AutumnERS.users (userName, password, userRole) values ('ericcarr', 'kiss', 'employee');		 -- ID = 5
 insert into AutumnERS.users (userName, password, userRole) values ('ericsinger', 'kiss', 'employee');	 -- ID = 6
 insert into AutumnERS.users (userName, password) values ('brucekulick', 'kiss');						 -- ID = 7
@@ -61,6 +58,13 @@ insert into AutumnERS.users (userName, password) values ('markstjohn', 'kiss');	
 insert into AutumnERS.users (userName, password) values ('vinnievincent', 'kiss');						 -- ID = 9
 insert into AutumnERS.users (userName, password) values ('tommythayer', 'kiss');						 -- ID = 10
 
+select * from AutumnERS.tickets where author_fk = 4;
+UPDATE AutumnERS.tickets SET status = 'Approved' WHERE ticketID = 16;
+
+insert into AutumnERS.tickets (author_fk, resolver_fk, description, status, amount) values (3, 2, 'kitty litter', 'pending', 34.99);
+insert into AutumnERS.tickets (author_fk, resolver_fk, description, status, amount) values (4, 2, 'cocaine', 'pending', 678.99);
+insert into AutumnERS.tickets (author_fk, resolver_fk, description, status, amount) values (4, 2, 'guitar strings', 'pending', 22.99);
+insert into AutumnERS.tickets (author_fk, resolver_fk, description, status, amount) values (4, 2, 'alcohol', 'pending', 965.32);
 insert into AutumnERS.tickets (author_fk, resolver_fk, description, status, amount) values (3, 2, 'drumsticks', 'pending', 9.99);
 insert into AutumnERS.tickets (author_fk, resolver_fk, description, status, amount) values (4, 2, 'edibles', 'pending', 278.99);
 insert into AutumnERS.tickets (author_fk, resolver_fk, description, status, amount) values (4, 2, 'heroin', 'pending', 122.99);
@@ -73,3 +77,7 @@ insert into AutumnERS.tickets (author_fk, resolver_fk, description, status, amou
 insert into AutumnERS.tickets (author_fk, resolver_fk, description, status, amount) values (9, 2, 'selfie stick', 'pending', 5.99);
 insert into AutumnERS.tickets (author_fk, resolver_fk, description, status, amount) values (9, 2, 'bail money', 'pending', 1000.99);
 insert into AutumnERS.tickets (author_fk, resolver_fk, description, status, amount) values (9, 2, 'scarves', 'pending', 65.32);
+insert into AutumnERS.tickets (author_fk, resolver_fk, description, status, amount) values (1, 2, 'sunglasses', 'pending', 5034.99);
+insert into AutumnERS.tickets (author_fk, resolver_fk, description, status, amount) values (1, 2, 'glitter', 'pending', 25.99);
+insert into AutumnERS.tickets (author_fk, resolver_fk, description, status, amount) values (2, 1, 'pocket mirrors', 'pending', 100.99);
+insert into AutumnERS.tickets (author_fk, resolver_fk, description, status, amount) values (2, 1, 'condoms', 'pending', 65.32);

@@ -26,6 +26,8 @@ Employees
 ![Register a user](imgs/All-MY-Tickets.jpg)
 
 Manaagers
+![Manager Main Menu](imgs/Main-Manager.jpg)
+
 - See All Users
 - Find specific Users by UserID, UserName
 - See All Tickets
