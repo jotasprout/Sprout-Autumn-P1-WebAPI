@@ -9,7 +9,7 @@ namespace DataAccess
     public class UserRepository : IuserDAO
     {
 
-        public string thoseAll = "select * from AutumnERS.users;";
+        public string thoseAll = "select * from users;";
 
         private readonly ConnectionFactory _connectionFactory;
 
@@ -70,7 +70,7 @@ namespace DataAccess
             User thisUser = new User();
             User tempUserHoldingRole = new User();
 
-            string getThisUser = "select * from AutumnERS.users where userName ='" + userWanted + "';";
+            string getThisUser = "select * from users where userName ='" + userWanted + "';";
 
             SqlConnection makeConnection = _connectionFactory.GetConnection();
             SqlCommand goGetThisUser = new SqlCommand(getThisUser, makeConnection);
@@ -98,7 +98,7 @@ namespace DataAccess
         {
             User thisUser = newUser;
 
-            string putUserInDB = "insert into AutumnERS.users (userName, password, userRole) values (@userName, @password, @userRole);";
+            string putUserInDB = "insert into users (userName, password, userRole) values (@userName, @password, @userRole);";
 
             SqlConnection makeConnection = _connectionFactory.GetConnection();
             
@@ -136,7 +136,7 @@ namespace DataAccess
             User thisUser = new User();
             User tempUserHoldingRole = new User();
 
-            string getThisUser = "select * from AutumnERS.users where userID ='" + userID + "';";
+            string getThisUser = "select * from users where userID ='" + userID + "';";
 
             SqlConnection makeConnection = _connectionFactory.GetConnection();
             SqlCommand goGetThisUser = new SqlCommand(getThisUser, makeConnection);
